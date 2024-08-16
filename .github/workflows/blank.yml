@@ -1,0 +1,46 @@
+# Este é um fluxo de trabalho básico para ajudar você a começar com Actions
+
+name: CI
+
+# Controla quando o fluxo de trabalho será executado
+on:
+  # Aciona o fluxo de trabalho em eventos de push ou pull request para branches específicas no Git Flow
+  push:
+    branches: 
+      - "main"          # Para lançamentos em produção
+      - "develop"       # Para testes de integração
+      - "feature/*"     # Para desenvolvimento de funcionalidades individuais
+      - "release/*"     # Para candidatos a lançamento
+      - "hotfix/*"      # Para correções urgentes em produção
+  pull_request:
+    branches: 
+      - "main"          
+      - "develop"
+      - "feature/*"
+      - "release/*"
+      - "hotfix/*"
+
+  # Permite que você execute este fluxo de trabalho manualmente na aba Actions
+  workflow_dispatch:
+
+# Uma execução de fluxo de trabalho é composta por um ou mais jobs que podem ser executados sequencialmente ou em paralelo
+jobs:
+  # Este fluxo de trabalho contém um único job chamado "build"
+  build:
+    # O tipo de runner em que o job será executado
+    runs-on: ubuntu-latest
+
+    # Steps representam uma sequência de tarefas que serão executadas como parte do job
+    steps:
+      # Faz o checkout do seu repositório no $GITHUB_WORKSPACE, permitindo que seu job o acesse
+      - uses: actions/checkout@v4
+
+      # Executa um único comando usando o shell do runner
+      - name: Executar um script de uma linha
+        run: echo Olá, mundo!
+
+      # Executa um conjunto de comandos usando o shell do runner
+      - name: Executar um script de múltiplas linhas
+        run: |
+          echo Adicione outras ações para compilar,
+          echo testar e implantar seu projeto.
