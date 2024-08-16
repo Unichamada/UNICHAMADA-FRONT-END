@@ -67,3 +67,70 @@ Aqui estão os comandos básicos para usar o Git Flow:
   ```
   Isso faz o merge do hotfix em `main` e `develop`.
 
+  Claro! Aqui está uma versão mais simplificada da documentação para o seu repositório:
+
+---
+
+# Guia de Commits
+
+## Estrutura dos Commits
+
+Os commits devem seguir este formato:
+
+```
+<tipo>[escopo opcional]: <descrição>
+
+[coração opcional]
+
+[rodapé(s) opcional(is)]
+```
+
+### Tipos Comuns
+
+- **feat**: Nova funcionalidade
+- **fix**: Correção de bug
+- **docs**: Atualização de documentação
+- **style**: Alterações no estilo (espaçamento, formatação, etc.)
+- **refactor**: Alteração no código sem modificar funcionalidades
+- **perf**: Melhoria de desempenho
+- **test**: Testes
+- **build**: Mudanças no sistema de build
+- **ci**: Configurações de integração contínua
+- **chore**: Outras mudanças
+
+### Exemplos
+
+1. **Adicionar nova funcionalidade**
+
+   ```
+   feat(auth): adicionar login com Google
+   ```
+
+2. **Corrigir um bug**
+
+   ```
+   fix(api): corrigir erro ao buscar dados
+   ```
+
+3. **Atualizar documentação**
+
+   ```
+   docs: atualizar guia de instalação
+   ```
+
+4. **Melhorar desempenho**
+
+   ```
+   perf: otimizar tempo de resposta
+   ```
+
+## Dicas
+
+- Use uma frase curta e clara.
+- Comece com letra minúscula.
+- Não use ponto final na descrição.
+
+---
+
+
+
