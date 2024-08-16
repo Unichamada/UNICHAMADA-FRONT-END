@@ -68,4 +68,4 @@ Aqui estão os comandos básicos para usar o Git Flow:
   git flow hotfix finish nome-do-hotfix
   ```
   Isso faz o merge do hotfix em `main` e `develop`.
-```
+
