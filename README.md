@@ -33,9 +33,7 @@ O Git Flow é um modelo de ramificação para o Git que facilita o gerenciamento
    - Corrija o bug na branch `hotfix`.
    - Faça o merge da branch `hotfix` em `main` e `develop`.
 
-Aqui está o bloco organizado em Markdown:
 
-```markdown
 ### 4. Fluxo Básico de Trabalho com Git Flow
 Aqui estão os comandos básicos para usar o Git Flow:
 - **Criar uma nova feature**:
