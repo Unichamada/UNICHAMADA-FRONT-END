@@ -1,10 +1,10 @@
-import Image from "next/image";
-import { Button } from "antd";
+import React from 'react';
+import ConfirmaMatricula from '@/pages/ConfirmaMatricula';
 
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Button type="primary">Sou um botão primary</Button>
-    </main>
-  );
-}
+const Home = () => (
+  <div>
+      <ConfirmaMatricula />
+  </div>
+);
+
+export default Home;
