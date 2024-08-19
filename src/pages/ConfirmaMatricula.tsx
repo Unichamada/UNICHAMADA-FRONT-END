@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {  Button, ConfigProvider, Input, Typography  } from "antd";
 import type { GetProps } from 'antd';
 import { Alef } from 'next/font/google';
@@ -12,15 +12,24 @@ export default function ConfirmaMatricula(){
   const [inputValue, setInputValue] = useState('')
   const [isError, setIsError] = useState(false)
 
+  // Cria a referência para o input
+  const inputRef = useRef(null);
+
   //Mudança de estado do input
   const handleInputChange = (event) => {
-    setInputValue(event.target.value)
+    const value = event.target.value;
+    if (/^\d*$/.test(value)) {
+      setInputValue(value);
+    }
   }
 
   // Função para lidar com o clique no botão
   const handleButtonClick = () => {
     if (inputValue.length < maxLength) {
       setIsError(true); // Se o valor for menor que maxLength, mostra erro
+      inputRef.current.focus({
+        cursor: 'end',
+      });
     } else {
       setIsError(false); // Se o valor for igual ao maxLength, remove o erro
       alert('Ok: Valor aceito.');
@@ -33,30 +42,35 @@ export default function ConfirmaMatricula(){
      token: {
        // Seed Token
       colorPrimary: '#FED403',
-      colorTextPlaceholder: "#000",
-       borderRadius: 2,
+      borderRadius: 2,
 
        // Alias Token
        colorBgContainer: '#FFFBE9',
      },
    }}>
-      <div className="flex bg-blue-200 items-center justify-center min-h-screen mx-auto p-4   ">
-         <div className='flex flex-col bg-blue-950 items-center justify-center p-6 gap-4 rounded-lg w-96'>
-            <img src="https://logo.uninassau.edu.br/img/svg/uninassau_n.svg" alt="logo Uninassau azul com texto b" />
+      <div className="flex bg-blue-200 items-center justify-center min-h-screen mx-auto p-4 h-screen  ">
+         <div className='flex flex-col bg-blue-950 items-center justify-center p-6 gap-4 rounded-lg w-96 h-5/6'>
+            <img src="https://logo.uninassau.edu.br/img/svg/uninassau_n.svg" width={240} alt="logo Uninassau azul com texto b" />
             <h3  className='text-white'>Sua matricula</h3>
             {isError ? (
               <Input 
+         
               status='error'
               className='w-full' 
               maxLength={maxLength}
               value={inputValue}
-              onChange={handleInputChange}/> 
+              onChange={handleInputChange}
+              ref={inputRef} 
+              />
+          
             ): (
               <Input 
-              className='w-full' 
+                 className='w-full' 
               maxLength={maxLength}
               value={inputValue}
-              onChange={handleInputChange}/>
+              onChange={handleInputChange}
+              ref={inputRef} 
+              />
             )
           
             }
