@@ -4,17 +4,22 @@ import React, { useRef, useState } from 'react';
 import {  Button, ConfigProvider, Input, Typography  } from "antd";
 import type { GetProps } from 'antd';
 import { Alef } from 'next/font/google';
+import { useRouter } from 'next/router';
 
 
 export default function ConfirmaMatricula(){
   const maxLength = 8
+  const router = useRouter();
   //Armazena um valor para o input 
   const [inputValue, setInputValue] = useState('')
   const [isError, setIsError] = useState(false)
 
   // Cria a referência para o input
   const inputRef = useRef(null);
-
+ // Função para navegar para a página LeitorDeQRCode
+ const navigateToLeitorDeQRCode = () => {
+  router.push('/LeitorDeQRCode'); // Certifique-se de que o caminho está correto
+};
   //Mudança de estado do input
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -32,6 +37,7 @@ export default function ConfirmaMatricula(){
       });
     } else {
       setIsError(false); // Se o valor for igual ao maxLength, remove o erro
+      navigateToLeitorDeQRCode();
       alert('Ok: Valor aceito.');
     }
   };

@@ -1,9 +1,11 @@
 import React from 'react';
-import ConfirmaMatricula from '@/pages/ConfirmaMatricula';
+import ConfirmaMatricula from '@/app/ConfirmaMatricula/page';
+import LeitorDeQRCode from '@/app/LeitorDeQRCode/page';
 
 const Home = () => (
   <div>
-      <ConfirmaMatricula />
+      <LeitorDeQRCode />
+
   </div>
 );
 
