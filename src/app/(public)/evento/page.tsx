@@ -9,19 +9,18 @@ import { useRouter } from "next/navigation";
 
 export default function TelaAdicionarEvento() {
     const router = useRouter();
-    const navigateToLeitorDeQRCode = () => {
-        router.push("/LeitorDeQRCode"); // Certifique-se de que o caminho está correto
+    const navigateToAdicionaEvento = () => {
+        router.push("evento/adiciona-evento"); // Certifique-se de que o caminho está correto
     };
     return (
         <>
-            <SideMenu />
             <div className="mx-5 p-12  h-screen">
                 <h1 className="text-2xl font-bold pb-4 mb-4 border-b-2">
                     Eventos
                 </h1>
                 <Button
                     className="bg-blue-800 rounded-xl text-blue-50 hover:bg-blue-700 mb-8"
-                    onClick={navigateToLeitorDeQRCode}
+                    onClick={navigateToAdicionaEvento}
                 >
                     Adicionar
                 </Button>
