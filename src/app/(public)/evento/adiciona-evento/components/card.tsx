@@ -3,38 +3,33 @@ import { Calendar } from "antd";
 import { CalendarDays, Clock, Icon, UsersRound } from "lucide-react";
 import React from "react";
 import { icons } from "lucide-react";
-
-interface CardProps {
+interface CardEventosProps {
     titulo?: string;
+    items: CardItemProps[];
+    onClick?: () => void;
 }
 
-export function Card({ titulo = "Evento" }: CardProps) {
+export function Card({ titulo = "Evento", items, onClick }: CardEventosProps) {
     return (
         <>
-            <div className="bg-white mt-4 py-4 px-8 border rounded-xl drop-shadow-md hover:bg-gray-50 cursor-pointer">
+            <div
+                onClick={onClick}
+                className="bg-white mt-4 py-4 px-8 border rounded-md drop-shadow-sm hover:bg-gray-50 cursor-pointer"
+            >
                 <h2 className="text-xl font-medium pb-2">{titulo}</h2>
                 <div className="flex gap-4">
-                    <CardItem
-                        label="Participantes"
-                        icon="UsersRound"
-                        value={100}
-                    />
-                    <CardItem
-                        label="Data do evento"
-                        icon="CalendarDays"
-                        value={100}
-                    />
-                    <CardItem label="Hora do evento" icon="Clock" value={100} />
+                    {items.map((item, index) => (
+                        <CardItem
+                            key={index}
+                            label={item.label}
+                            icon={item.icon}
+                            value={item.value}
+                        />
+                    ))}
                 </div>
             </div>
         </>
     );
-}
-
-interface CardItemProps {
-    label: string;
-    icon: string;
-    value: any;
 }
 
 interface CardItemProps {
