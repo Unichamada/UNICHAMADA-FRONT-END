@@ -6,25 +6,23 @@ import { icons } from "lucide-react";
 
 interface CardEventosProps {
     titulo?: string;
+    items: CardItemProps[]; // Adiciona uma prop para itens dinâmicos
 }
 
-export function CardEventos({ titulo = "Evento" }: CardEventosProps) {
+export function Card({ titulo = "Evento", items }: CardEventosProps) {
     return (
         <>
             <div className="bg-white mt-4 py-4 px-8 border rounded-xl drop-shadow-md hover:bg-gray-50 cursor-pointer">
                 <h2 className="text-xl font-medium pb-2">{titulo}</h2>
                 <div className="flex gap-4">
-                    <CardItem
-                        label="Participantes"
-                        icon="UsersRound"
-                        value={100}
-                    />
-                    <CardItem
-                        label="Data do evento"
-                        icon="CalendarDays"
-                        value={100}
-                    />
-                    <CardItem label="Hora do evento" icon="Clock" value={100} />
+                    {items.map((item, index) => (
+                        <CardItem
+                            key={index}
+                            label={item.label}
+                            icon={item.icon}
+                            value={item.value}
+                        />
+                    ))}
                 </div>
             </div>
         </>
