@@ -3,16 +3,19 @@ import { Calendar } from "antd";
 import { CalendarDays, Clock, Icon, UsersRound } from "lucide-react";
 import React from "react";
 import { icons } from "lucide-react";
-
 interface CardEventosProps {
     titulo?: string;
-    items: CardItemProps[]; // Adiciona uma prop para itens dinâmicos
+    items: CardItemProps[];
+    onClick?: () => void;
 }
 
-export function Card({ titulo = "Evento", items }: CardEventosProps) {
+export function Card({ titulo = "Evento", items, onClick }: CardEventosProps) {
     return (
         <>
-            <div className="bg-white mt-4 py-4 px-8 border rounded-xl drop-shadow-md hover:bg-gray-50 cursor-pointer">
+            <div
+                onClick={onClick}
+                className="bg-white mt-4 py-4 px-8 border rounded-md drop-shadow-sm hover:bg-gray-50 cursor-pointer"
+            >
                 <h2 className="text-xl font-medium pb-2">{titulo}</h2>
                 <div className="flex gap-4">
                     {items.map((item, index) => (

@@ -30,19 +30,15 @@ export function MultiSelect() {
     };
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger
-                className=" flex rounded-xl mt-1  w-full px-3 py-2 bg-white border border-slate-300 text-sm  shadow-sm placeholder-slate-400
-        focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-gray-700"
-                asChild
-            >
-                <Button className="flex justify-start text-left font-normal rounded-xl mt-1  w-full px-3 py-2 bg-white border border-slate-300  text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 placeholder:opacity-30 ">
+            <DropdownMenuTrigger asChild>
+                <Button className="flex justify-start text-left font-normal rounded-lgS mt-1  w-full px-3 py-2 bg-white border border-slate-300  text-sm shadow-sm placeholder-slate-400  placeholder:opacity-30 ">
                     {selectedFruits.length > 0
                         ? `Selecionado: ${selectedFruits.join(", ")}`
                         : "Selecione uma turma"}
                 </Button>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent className="w-full rounded-xl px-3 py-2 bg-white border border-slate-300 text-sm  shadow-sm">
+            <DropdownMenuContent className="w-full rounded-md px-3 py-2 bg-white border border-slate-300 text-sm  shadow-sm">
                 <DropdownMenuLabel>Frutas</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 {["Apple", "Banana", "Blueberry", "Grapes", "Pineapple"].map(
