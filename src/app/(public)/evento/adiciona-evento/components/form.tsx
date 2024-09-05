@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Toast } from "@radix-ui/react-toast";
+import { toast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import {
     Form,
@@ -24,12 +24,7 @@ const FormSchema = z.object({
 });
 
 export function FormAdicionaEvento() {
-    const form = useForm<z.infer<typeof FormSchema>>({
-        resolver: zodResolver(FormSchema),
-        defaultValues: {
-            username: "",
-        },
-    });
+    const form = useForm<z.infer<typeof FormSchema>>({});
 
     function onSubmit(data: z.infer<typeof FormSchema>) {
         toast({
@@ -57,11 +52,12 @@ export function FormAdicionaEvento() {
                         <FormItem>
                             <FormLabel>Username</FormLabel>
                             <FormControl>
-                                <Input placeholder="shadcn" {...field} />
+                                <Input
+                                    className="rounded-xl placeholder:opacity-50"
+                                    placeholder="shadcn"
+                                    {...field}
+                                />
                             </FormControl>
-                            <FormDescription>
-                                This is your public display name.
-                            </FormDescription>
                             <FormMessage />
                         </FormItem>
                     )}
