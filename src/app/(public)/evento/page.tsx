@@ -1,11 +1,11 @@
 "use client";
 
+import { CardEventos } from "@/components/card-eventos";
 import SideMenu from "@/components/side-menu";
 import { Button } from "@/components/ui/button";
 import { Oi } from "next/font/google";
 import React from "react";
 import { useRouter } from "next/navigation";
-import { Card } from "./adiciona-evento/components/card";
 
 export default function TelaAdicionarEvento() {
     const router = useRouter();
@@ -26,26 +26,7 @@ export default function TelaAdicionarEvento() {
                 </Button>
                 <ul>
                     <li>
-                        <Card
-                            titulo="Aula 01"
-                            items={[
-                                {
-                                    label: "Participantes",
-                                    icon: "UsersRound",
-                                    value: 100,
-                                },
-                                {
-                                    label: "Data do evento",
-                                    icon: "CalendarDays",
-                                    value: "10/10/2024",
-                                },
-                                {
-                                    label: "Hora do evento",
-                                    icon: "Clock",
-                                    value: "18:00",
-                                },
-                            ]}
-                        />
+                        <CardEventos titulo="Aula 01" />
                     </li>
                 </ul>
             </div>
