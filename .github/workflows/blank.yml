@@ -1,4 +1,4 @@
- # Este é um fluxo de trabalho básico para ajudar você a começar com Actions
+# Este é um fluxo de trabalho básico para ajudar você a começar com Actions
 
 name: CI
 
@@ -9,8 +9,13 @@ on:
     branches: 
       - "main"          # Para lançamentos em produção
       - "develop"       # Para testes de integração
+      - "feature/*"     # Para desenvolvimento de funcionalidades individuais
+      - "release/*"     # Para candidatos a lançamento
+      - "hotfix/*"      # Para correções urgentes em produção
   pull_request:
     branches: 
+      - "main"          
+      - "develop"
       - "feature/*"
       - "release/*"
       - "hotfix/*"
