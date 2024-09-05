@@ -18,9 +18,12 @@ import {
 import { Input } from "@/components/ui/input";
 
 const FormSchema = z.object({
-    username: z.string().min(2, {
-        message: "Username must be at least 2 characters.",
+    event_name: z.string().min(2, {
+        message: "Nome do evento deve ter pelo menos 2 characteres.",
     }),
+    event_date: z.any(),
+    start_time: z.any(),
+    end_time: z.any(),
 });
 
 export function FormAdicionaEvento() {
@@ -43,18 +46,18 @@ export function FormAdicionaEvento() {
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="w-2/3 space-y-6"
+                className="w-full space-y-6"
             >
                 <FormField
                     control={form.control}
-                    name="username"
+                    name="event_name"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Username</FormLabel>
+                            <FormLabel>Nome do evento</FormLabel>
                             <FormControl>
                                 <Input
-                                    className="rounded-xl placeholder:opacity-50"
-                                    placeholder="shadcn"
+                                    className="border-gray-200 rounded-xl placeholder:opacity-50"
+                                    placeholder="e.g: aula"
                                     {...field}
                                 />
                             </FormControl>
@@ -62,7 +65,66 @@ export function FormAdicionaEvento() {
                         </FormItem>
                     )}
                 />
-                <Button type="submit">Submit</Button>
+                <FormField
+                    control={form.control}
+                    name="event_date"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Data do evento</FormLabel>
+                            <FormControl>
+                                <Input
+                                    className="border-gray-200 rounded-xl placeholder:opacity-50"
+                                    placeholder="e.g: 08/09/2010"
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <div className="flex gap-4 w-auto">
+                    <FormField
+                        control={form.control}
+                        name="start_time"
+                        render={({ field }) => (
+                            <FormItem className="w-full">
+                                <FormLabel>Inicio do evento</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        className="border-gray-200 rounded-xl placeholder:opacity-50 w-full"
+                                        placeholder="08:00"
+                                        {...field}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="end_time"
+                        render={({ field }) => (
+                            <FormItem className="w-full">
+                                <FormLabel>Fim do evento</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        className="border-gray-200 rounded-xl placeholder:opacity-50 "
+                                        placeholder="e.g: 10:00"
+                                        {...field}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                </div>
+
+                <Button
+                    type="submit"
+                    className="bg-blue-800 rounded-xl text-blue-50 hover:bg-blue-700 mb-8"
+                >
+                    Cadastrar
+                </Button>
             </form>
         </Form>
     );
