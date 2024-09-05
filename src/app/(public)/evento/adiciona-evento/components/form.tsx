@@ -16,7 +16,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { InputForm } from "./input-form";
+import { AppInput } from "./input-form";
 
 const FormSchema = z.object({
     event_name: z.string().min(2, {
@@ -56,7 +56,7 @@ export function FormAdicionaEvento() {
                         <FormItem>
                             <FormLabel>Nome do evento</FormLabel>
                             <FormControl>
-                                <InputForm placeholder="Insira um nome para o evento" />
+                                <AppInput.Default placeholder="Insira um nome para o evento" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -69,7 +69,7 @@ export function FormAdicionaEvento() {
                         <FormItem>
                             <FormLabel>Data do evento</FormLabel>
                             <FormControl>
-                                <InputForm placeholder="Insira um nome para o evento" />
+                                <AppInput.Default placeholder="Insira um nome para o evento" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -83,7 +83,7 @@ export function FormAdicionaEvento() {
                             <FormItem className="w-full">
                                 <FormLabel>Inicio do evento</FormLabel>
                                 <FormControl>
-                                    <InputForm placeholder="Insira um nome para o evento" />
+                                    <AppInput.Default placeholder="Insira um nome para o evento" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -96,7 +96,7 @@ export function FormAdicionaEvento() {
                             <FormItem className="w-full">
                                 <FormLabel>Fim do evento</FormLabel>
                                 <FormControl>
-                                    <InputForm placeholder="Insira um nome para o evento" />
+                                    <AppInput.Default placeholder="Insira um nome para o evento" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>

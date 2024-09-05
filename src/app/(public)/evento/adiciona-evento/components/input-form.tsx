@@ -1,9 +1,10 @@
 import { Input } from "@/components/ui/input";
 
+
 interface InputProps {
     placeholder: string;
 }
-export function InputForm({ placeholder }: InputProps) {
+export function Default({ placeholder }: InputProps) {
     return (
         <Input
             className="rounded-xl mt-1 block w-full px-3 py-2 bg-white border border-slate-300  text-sm shadow-sm placeholder-slate-400
@@ -12,4 +13,5 @@ export function InputForm({ placeholder }: InputProps) {
         />
     );
 }
+
 
