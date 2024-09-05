@@ -1,5 +1,6 @@
 import { Input } from "@/components/ui/input";
-
+import { Button, Popover } from "antd";
+import { Calendar } from "lucide-react";
 
 interface InputProps {
     placeholder: string;
@@ -14,4 +15,6 @@ export function Default({ placeholder }: InputProps) {
     );
 }
 
-
+export const AppInput = {
+    Default,
+};
