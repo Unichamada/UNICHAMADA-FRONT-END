@@ -1,6 +1,5 @@
 "use client";
 
-import { CardEventos } from "@/components/card-eventos";
 import SideMenu from "@/components/side-menu";
 import { Button } from "@/components/ui/button";
 import { Oi } from "next/font/google";
