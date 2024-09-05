@@ -16,6 +16,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { InputForm } from "./input-form";
 
 const FormSchema = z.object({
     event_name: z.string().min(2, {
@@ -55,11 +56,7 @@ export function FormAdicionaEvento() {
                         <FormItem>
                             <FormLabel>Nome do evento</FormLabel>
                             <FormControl>
-                                <Input
-                                    className="border-gray-200 rounded-xl placeholder:opacity-50"
-                                    placeholder="e.g: aula"
-                                    {...field}
-                                />
+                                <InputForm placeholder="Insira um nome para o evento" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -72,11 +69,7 @@ export function FormAdicionaEvento() {
                         <FormItem>
                             <FormLabel>Data do evento</FormLabel>
                             <FormControl>
-                                <Input
-                                    className="border-gray-200 rounded-xl placeholder:opacity-50"
-                                    placeholder="e.g: 08/09/2010"
-                                    {...field}
-                                />
+                                <InputForm placeholder="Insira um nome para o evento" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -90,11 +83,7 @@ export function FormAdicionaEvento() {
                             <FormItem className="w-full">
                                 <FormLabel>Inicio do evento</FormLabel>
                                 <FormControl>
-                                    <Input
-                                        className="border-gray-200 rounded-xl placeholder:opacity-50 w-full"
-                                        placeholder="08:00"
-                                        {...field}
-                                    />
+                                    <InputForm placeholder="Insira um nome para o evento" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -107,11 +96,7 @@ export function FormAdicionaEvento() {
                             <FormItem className="w-full">
                                 <FormLabel>Fim do evento</FormLabel>
                                 <FormControl>
-                                    <Input
-                                        className="border-gray-200 rounded-xl placeholder:opacity-50 "
-                                        placeholder="e.g: 10:00"
-                                        {...field}
-                                    />
+                                    <InputForm placeholder="Insira um nome para o evento" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
