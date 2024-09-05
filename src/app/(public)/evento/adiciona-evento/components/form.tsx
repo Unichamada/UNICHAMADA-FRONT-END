@@ -15,8 +15,9 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { AppInput } from "./input-form";
+import { InputForm } from "./input";
+import { DatePicker } from "./data-picker";
+import { MultiSelect } from "./mult-selected";
 
 const FormSchema = z.object({
     event_name: z.string().min(2, {
@@ -51,12 +52,12 @@ export function FormAdicionaEvento() {
             >
                 <FormField
                     control={form.control}
-                    name="event_name"
+                    name="nome"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Nome do evento</FormLabel>
                             <FormControl>
-                                <AppInput.Default placeholder="Insira um nome para o evento" />
+                                <InputForm placeholder="Insira um nome para o evento" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -64,12 +65,25 @@ export function FormAdicionaEvento() {
                 />
                 <FormField
                     control={form.control}
-                    name="event_date"
+                    name="turmas"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Quais turmas vão participar?</FormLabel>
+                            <FormControl>
+                                <MultiSelect placeholder="Insira um nome para o evento" />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="dataInicio"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Data do evento</FormLabel>
                             <FormControl>
-                                <AppInput.Default placeholder="Insira um nome para o evento" />
+                                <DatePicker placeholder="Insira um nome para o evento" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -78,12 +92,12 @@ export function FormAdicionaEvento() {
                 <div className="flex gap-4 w-auto">
                     <FormField
                         control={form.control}
-                        name="start_time"
+                        name="horaInicio"
                         render={({ field }) => (
                             <FormItem className="w-full">
                                 <FormLabel>Inicio do evento</FormLabel>
                                 <FormControl>
-                                    <AppInput.Default placeholder="Insira um nome para o evento" />
+                                    <InputForm placeholder="Insira um nome para o evento" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -91,12 +105,12 @@ export function FormAdicionaEvento() {
                     />
                     <FormField
                         control={form.control}
-                        name="end_time"
+                        name="horaFim"
                         render={({ field }) => (
                             <FormItem className="w-full">
                                 <FormLabel>Fim do evento</FormLabel>
                                 <FormControl>
-                                    <AppInput.Default placeholder="Insira um nome para o evento" />
+                                    <InputForm placeholder="Insira um nome para o evento" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
