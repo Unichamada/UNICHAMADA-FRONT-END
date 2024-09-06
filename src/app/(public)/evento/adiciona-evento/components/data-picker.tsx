@@ -36,9 +36,9 @@ export function DatePicker() {
                     )}
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className=" border-slate-300  p-0">
+            <PopoverContent align="start" className=" border-slate-300  p-0">
                 <Calendar
-                    className=" bg-white"
+                    className=" bg-white "
                     mode="single"
                     selected={date}
                     onSelect={setDate}
