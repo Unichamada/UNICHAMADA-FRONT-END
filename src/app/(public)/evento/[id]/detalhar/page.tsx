@@ -27,17 +27,31 @@ import FormItem from "antd/es/form/FormItem";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 
-import { Card } from "../adiciona-evento/components/card";
+import { Card } from "../../adiciona-evento/components/card";
+import { useParamId } from "@/hooks/use-param-id";
+import { useQuery } from "@tanstack/react-query";
+import { EventoService } from "@/services/Evento";
 
 export default function DetalharEvento() {
     const router = useRouter();
+    const id = useParamId();
+
     const navigateToEvento = () => {
         router.push("/evento");
     };
 
-    const navigateToDetalharTurma = () => {
-        router.push("/evento/detalhar/turma");
+    const navigateToDetalharTurma = (turmaId: number) => {
+        router.push(`/evento/${id}/detalhar/turma/${turmaId}`);
     };
+
+    const navigeteToQrCode = () => {
+        router.push(`/evento/${id}/qr-code`);
+    };
+
+    const { data } = useQuery({
+        queryKey: ["eventos", id],
+        queryFn: async () => await EventoService.getEventoById(id),
+    });
 
     return (
         <>
@@ -52,7 +66,7 @@ export default function DetalharEvento() {
 
                         <BreadcrumbItem>
                             <BreadcrumbPage className="font-medium text-blue-500 ">
-                                Detalhar Evento - Aula 01
+                                Detalhar Evento - {data?.nome}
                             </BreadcrumbPage>
                         </BreadcrumbItem>
                     </BreadcrumbList>
@@ -70,7 +84,10 @@ export default function DetalharEvento() {
                         Turmas do evento - Aula 01
                     </h1>
                     <div className="flex gap-4">
-                        <Button className="bg-blue-800 rounded-xl text-blue-50 hover:bg-blue-700 mb-3">
+                        <Button
+                            className="bg-blue-800 rounded-xl text-blue-50 hover:bg-blue-700 mb-3"
+                            onClick={navigeteToQrCode}
+                        >
                             Gerar Chamada
                         </Button>
                         <Button
@@ -83,19 +100,19 @@ export default function DetalharEvento() {
                     </div>
 
                     <ul>
-                        <li>
-                            <Card
-                                onClick={navigateToDetalharTurma}
-                                titulo="Turma A"
-                                items={[
-                                    {
-                                        label: "Participantes",
-                                        icon: "UsersRound",
-                                        value: 100,
-                                    },
-                                ]}
-                            />
-                        </li>
+                        {data?.turmas.map((eventoTurma) => (
+                            <li>
+                                <Card
+                                    onClick={() =>
+                                        navigateToDetalharTurma(
+                                            eventoTurma.turma.id,
+                                        )
+                                    }
+                                    titulo={eventoTurma.turma.nome}
+                                    items={[]}
+                                />
+                            </li>
+                        ))}
                     </ul>
                 </div>
             </div>

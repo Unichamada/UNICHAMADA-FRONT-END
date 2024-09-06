@@ -1,64 +1,96 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 
-import { toast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import {
     Form,
-    FormControl,
-    FormDescription,
-    FormField,
     FormItem,
     FormLabel,
     FormMessage,
+    FormControl,
+    FormField,
 } from "@/components/ui/form";
 
 import { DatePicker } from "./data-picker";
 import { InputForm } from "./input-form";
-import { MultiSelect, MultiSelectDropdown } from "./mult-selected";
+import { MultiSelectTurmas } from "./mult-selected-turmas";
+import { useMutation } from "@tanstack/react-query";
+import { Input } from "@/components/ui/input";
+import { EventoService } from "@/services/Evento";
+import { CreatesEventoDto } from "@/services/Evento/dto/create-evento.dto";
+import * as datefns from "date-fns";
+import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
-const FormSchema = z.object({
-    event_name: z.string().min(2, {
-        message: "Nome do evento deve ter pelo menos 2 characteres.",
-    }),
-    event_date: z.any(),
-    start_time: z.any(),
-    end_time: z.any(),
-});
+interface IEvento {
+    nome: string;
+    turmas: number[];
+    dataInicio: Date;
+    horaInicio: string;
+    horaFim: string;
+}
 
 export function FormAdicionaEvento() {
-    const form = useForm<z.infer<typeof FormSchema>>({});
+    const form = useForm();
+    const router = useRouter();
+    const { toast } = useToast();
+    const { mutate } = useMutation<any, Error, IEvento>({
+        mutationFn: async (data) => {
+            const [horaInicioNumber, minutoInicioNumber] = data.horaInicio
+                .split(":")
+                .map(Number);
+            const [horaFimNumber, minutoFimNumber] = data.horaFim
+                .split(":")
+                .map(Number);
 
-    function onSubmit(data: z.infer<typeof FormSchema>) {
-        toast({
-            title: "You submitted the following values:",
-            description: (
-                <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-                    <code className="text-white">
-                        {JSON.stringify(data, null, 2)}
-                    </code>
-                </pre>
-            ),
-        });
-    }
+            const horaInicio = datefns.setHours(
+                datefns.setMinutes(
+                    new Date(data.dataInicio),
+                    minutoInicioNumber,
+                ),
+                horaInicioNumber,
+            );
+            const horaFim = datefns.setHours(
+                datefns.setMinutes(new Date(data.dataInicio), minutoFimNumber),
+                horaFimNumber,
+            );
+
+            await EventoService.createEvento({
+                nome: data.nome,
+                turmas: data.turmas,
+                dataInicio: data.dataInicio,
+                horaInicio: horaInicio,
+                horaFim: horaFim,
+            });
+        },
+        onSuccess: (data) => {
+            toast({
+                title: "Evento cadastrado com sucesso",
+                duration: 5000,
+            });
+
+            router.push("/evento");
+        },
+    });
 
     return (
         <Form {...form}>
             <form
-                onSubmit={form.handleSubmit(onSubmit)}
+                onSubmit={form.handleSubmit(mutate)}
                 className="w-full space-y-6"
             >
                 <FormField
                     control={form.control}
-                    name="event_name"
+                    name="nome"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Nome do evento</FormLabel>
                             <FormControl>
-                                <InputForm placeholder="Insira um nome para o evento" />
+                                <InputForm
+                                    placeholder="Insira um nome para o evento"
+                                    {...field}
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -66,12 +98,12 @@ export function FormAdicionaEvento() {
                 />
                 <FormField
                     control={form.control}
-                    name="event_name"
+                    name="turmas"
                     render={({ field }) => (
                         <FormItem className="flex min-w-screen w-full flex-col">
                             <FormLabel>Selecione uma turma</FormLabel>
                             <FormControl className="flex min-w-screen w-full flex-col ">
-                                <MultiSelect />
+                                <MultiSelectTurmas {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -79,12 +111,12 @@ export function FormAdicionaEvento() {
                 />
                 <FormField
                     control={form.control}
-                    name="event_date"
+                    name="dataInicio"
                     render={({ field }) => (
                         <FormItem className="flex min-w-screen w-full flex-col">
                             <FormLabel>Data do evento</FormLabel>
                             <FormControl className="flex min-w-screen w-full flex-col ">
-                                <DatePicker />
+                                <DatePicker {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -93,12 +125,16 @@ export function FormAdicionaEvento() {
                 <div className="flex gap-4 w-auto">
                     <FormField
                         control={form.control}
-                        name="start_time"
+                        name="horaInicio"
                         render={({ field }) => (
                             <FormItem className="w-full">
                                 <FormLabel>Inicio do evento</FormLabel>
                                 <FormControl>
-                                    <InputForm placeholder="Insira a hora inicio do evento" />
+                                    <InputForm
+                                        type="time"
+                                        placeholder="Insira a hora inicio do evento"
+                                        {...field}
+                                    />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -106,12 +142,16 @@ export function FormAdicionaEvento() {
                     />
                     <FormField
                         control={form.control}
-                        name="end_time"
+                        name="horaFim"
                         render={({ field }) => (
                             <FormItem className="w-full">
                                 <FormLabel>Fim do evento</FormLabel>
                                 <FormControl>
-                                    <InputForm placeholder="Insira a hora fim do evento" />
+                                    <InputForm
+                                        type="time"
+                                        placeholder="Insira a hora fim do evento"
+                                        {...field}
+                                    />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>

@@ -4,7 +4,7 @@ import SideMenu from "@/components/side-menu";
 import { Button } from "@/components/ui/button";
 import { Oi } from "next/font/google";
 import React from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import {
     ArrowLeft,
     ArrowLeftCircle,
