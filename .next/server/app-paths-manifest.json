@@ -1,0 +1,4 @@
+{
+  "/page": "app/page.js",
+  "/(public)/evento/adiciona-evento/page": "app/(public)/evento/adiciona-evento/page.js"
+}
