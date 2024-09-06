@@ -4,7 +4,7 @@ import SideMenu from "@/components/side-menu";
 import { Button } from "@/components/ui/button";
 import { Oi } from "next/font/google";
 import React from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import {
     ArrowLeft,
     ArrowLeftCircle,
@@ -24,15 +24,28 @@ import {
 import BreadcrumbItem from "antd/es/breadcrumb/BreadcrumbItem";
 import Link from "next/link";
 import { TableComponent } from "@/components/table-component";
+import { useQuery } from "@tanstack/react-query";
+import { useParamId } from "@/hooks/use-param-id";
+import { EventoService } from "@/services/Evento";
+import { TablePresenca } from "./components/table-presenca-component";
 
 export default function DetalharTurma() {
+    const params = useParams();
+    const id = useParamId();
+    const turmaId = Number(params.turmaId);
     const router = useRouter();
     const navigateToDetalharEvento = () => {
-        router.push("/evento/detalhar");
+        router.push(`/evento/${id}/detalhar`);
     };
     const navigateToImportarAluno = () => {
-        router.push("/evento/detalhar/turma/importar-aluno");
+        router.push(`/evento/${id}/detalhar/turma/importar-aluno`);
     };
+
+    const { data } = useQuery({
+        queryKey: ["turma-evento-presenca", id, turmaId],
+        queryFn: async () =>
+            await EventoService.getPresencaByTurma(id, turmaId),
+    });
 
     return (
         <>
@@ -46,15 +59,10 @@ export default function DetalharTurma() {
                         </BreadcrumbItem>
                         <BreadcrumbItem>
                             <BreadcrumbLink asChild>
-                                <Link href="/evento/detalhar">
-                                    Detalhar Evento - Aula 01
+                                <Link href={`/evento/${id}/detalhar`}>
+                                    Alunos presentes
                                 </Link>
                             </BreadcrumbLink>
-                        </BreadcrumbItem>
-                        <BreadcrumbItem>
-                            <BreadcrumbPage className="font-medium text-blue-500 ">
-                                Turma A
-                            </BreadcrumbPage>
                         </BreadcrumbItem>
                     </BreadcrumbList>
                 </Breadcrumb>
@@ -67,9 +75,6 @@ export default function DetalharTurma() {
                     Voltar
                 </Button>
                 <div>
-                    <h1 className="text-xl text-gray-700 font-medium mb-6">
-                        Turma A
-                    </h1>
                     <div className="flex gap-4">
                         <Button
                             onClick={navigateToImportarAluno}
@@ -80,7 +85,7 @@ export default function DetalharTurma() {
                         </Button>
                     </div>
                 </div>
-                <TableComponent />
+                <TablePresenca data={data} />
             </div>
         </>
     );

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Home from "./page";
-import SideMenuLayout from "@/components/side-menu-layout";
 import SideMenu from "@/components/side-menu";
+import { QueryProvider } from "@/components/query-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,11 +18,14 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="pt-br">
-            <body className="flex min-h-screen w-full flex-col bg-slate-100 ">
-                <SideMenu />
-                {children}
-            </body>
-        </html>
+        <QueryProvider>
+            <html lang="pt-br">
+                <body className="flex min-h-screen w-full flex-col bg-slate-100 ">
+                    <Toaster />
+                    <SideMenu />
+                    {children}
+                </body>
+            </html>
+        </QueryProvider>
     );
 }
