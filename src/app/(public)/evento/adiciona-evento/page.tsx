@@ -1,31 +1,17 @@
 "use client";
 
-import SideMenu from "@/components/side-menu";
 import { Button } from "@/components/ui/button";
-import { Oi } from "next/font/google";
 import React from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, ArrowLeftCircle, Mail } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Breadcrumb } from "antd";
 import {
-    BreadcrumbEllipsis,
     BreadcrumbLink,
     BreadcrumbList,
     BreadcrumbPage,
-    BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import BreadcrumbItem from "antd/es/breadcrumb/BreadcrumbItem";
 import Link from "next/link";
-import {
-    FormControl,
-    FormDescription,
-    FormField,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form";
-import FormItem from "antd/es/form/FormItem";
-import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
 import { FormAdicionaEvento } from "./components/form";
 
 export default function TelaAdicionarEvento() {
