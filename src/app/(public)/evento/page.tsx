@@ -36,39 +36,35 @@ export default function TelaAdicionarEvento() {
             </Button>
             <ul>
                 {data?.map((evento) => (
-                    <>
-                        <li>
-                            <Card
-                                onClick={() =>
-                                    navigateToDetalharEvento(evento.id)
-                                }
-                                titulo={evento.nome}
-                                items={[
-                                    // {
-                                    //     label: "Participantes",
-                                    //     icon: "UsersRound",
-                                    //     value: 100,
-                                    // },
-                                    {
-                                        label: "Data do evento",
-                                        icon: "CalendarDays",
-                                        value: formatDate(
-                                            evento.dataInicio,
-                                            "dd/MM/yyyy",
-                                        ),
-                                    },
-                                    {
-                                        label: "Hora do evento",
-                                        icon: "Clock",
-                                        value: formatDate(
-                                            evento.horaInicio,
-                                            "HH:mm",
-                                        ),
-                                    },
-                                ]}
-                            />
-                        </li>
-                    </>
+                    <li key={evento.id}>
+                        <Card
+                            onClick={() => navigateToDetalharEvento(evento.id)}
+                            titulo={evento.nome}
+                            items={[
+                                // {
+                                //     label: "Participantes",
+                                //     icon: "UsersRound",
+                                //     value: 100,
+                                // },
+                                {
+                                    label: "Data do evento",
+                                    icon: "CalendarDays",
+                                    value: formatDate(
+                                        evento.dataInicio,
+                                        "dd/MM/yyyy",
+                                    ),
+                                },
+                                {
+                                    label: "Hora do evento",
+                                    icon: "Clock",
+                                    value: formatDate(
+                                        evento.horaInicio,
+                                        "HH:mm",
+                                    ),
+                                },
+                            ]}
+                        />
+                    </li>
                 ))}
             </ul>
         </div>

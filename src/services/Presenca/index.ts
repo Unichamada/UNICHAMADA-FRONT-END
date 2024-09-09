@@ -3,6 +3,7 @@ import { CreatePresencaDto } from "./dto/create-presenca.dto";
 
 async function createPresenca(presenca: CreatePresencaDto) {
     const res = await api.post("/presenca", presenca);
+
     return res.data;
 }
 

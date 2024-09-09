@@ -1,11 +1,15 @@
 "use client";
 
+import { useParamId } from "@/hooks/use-param-id";
 import { QRCode } from "antd";
 import Image from "next/image";
 
 export default function QrCodePage() {
-    const currentLocation = window.location.href;
-    const urlCheckIn = currentLocation.replace("qr-code", "check-in");
+    const id = useParamId();
+    const origin = window.location.origin;
+    const urlCheckIn = `${origin}/presenca/${id}/check-in`;
+
+    console.log(urlCheckIn);
 
     return (
         <div className="flex bg-blue-200 items-center justify-center min-h-screen mx-auto p-4 h-screen ">

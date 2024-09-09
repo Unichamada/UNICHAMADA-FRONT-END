@@ -7,7 +7,6 @@ import {
     FormControl,
     FormField,
     FormItem,
-    FormLabel,
     FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
@@ -26,16 +25,32 @@ export default function CheckIn() {
     const id = useParamId();
     const { toast } = useToast();
 
-    const { mutate } = useMutation<any, Error, ICheckIn>({
-        mutationFn: async (data) =>
-            await PresencaService.createPresenca({
+    const { mutate, isPending } = useMutation<any, Error, ICheckIn>({
+        mutationFn: async (data) => {
+            const now = new Date();
+
+            const res = await PresencaService.createPresenca({
                 eventoId: id,
                 matricula: data.matricula,
-            }),
-        onSuccess: () => {
+                dataPresenca: now,
+                horaPresenca: now,
+            });
+
+            return res;
+        },
+        onSuccess: (data) => {
+            console.log("Presença registrada com sucesso");
+
             toast({
                 title: "Presença registrada com sucesso",
                 description: "A presença foi registrada com sucesso",
+            });
+        },
+        onError: (error) => {
+            toast({
+                title: "Erro ao registrar presença",
+                description: error.response.data.message,
+                variant: "destructive",
             });
         },
     });
@@ -75,6 +90,7 @@ export default function CheckIn() {
                         <Button
                             type="submit"
                             className="w-full bg-blue-800 rounded-xl text-blue-50 hover:bg-blue-700 mb-8"
+                            loading={isPending}
                         >
                             Enviar
                         </Button>
