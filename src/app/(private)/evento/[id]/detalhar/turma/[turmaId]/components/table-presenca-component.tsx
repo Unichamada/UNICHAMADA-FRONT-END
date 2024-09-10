@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import {
     Table,
     TableBody,
@@ -43,9 +44,9 @@ export function TablePresenca({ data }: Readonly<TablePresencaProps>) {
                                 : ""}
                         </TableCell>
                         <TableCell>
-                            <div className="p-2 border bg-green-600 w-20 text-center text-white rounded-md">
+                            <Badge className=" bg-green-600  text-center text-white">
                                 Presente
-                            </div>
+                            </Badge>
                         </TableCell>
                     </TableRow>
                 ))}

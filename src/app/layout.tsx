@@ -4,6 +4,7 @@ import "./globals.css";
 import SideMenu from "@/components/side-menu";
 import { QueryProvider } from "@/components/query-provider";
 import { Toaster } from "@/components/ui/toaster";
+import MenuBar from "@/components/menu-bar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,7 @@ export default function RootLayout({
             <html lang="pt-br">
                 <body className="flex min-h-screen w-full flex-col bg-slate-100 ">
                     <Toaster />
-                    <SideMenu />
+                    <MenuBar />
                     {children}
                 </body>
             </html>

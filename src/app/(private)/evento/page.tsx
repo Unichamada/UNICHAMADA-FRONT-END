@@ -7,6 +7,7 @@ import { Card } from "./adiciona-evento/components/card";
 import { useQuery } from "@tanstack/react-query";
 import { EventoService } from "@/services/Evento";
 import { formatDate } from "date-fns";
+import { GetEventoDto } from "@/services/Evento/dto/get-evento.dto";
 
 export default function TelaAdicionarEvento() {
     const router = useRouter();
@@ -23,8 +24,10 @@ export default function TelaAdicionarEvento() {
         queryFn: async () => await EventoService.getEventos(),
     });
 
+    const eventoList = data ? data : ([] as GetEventoDto[]);
+
     return (
-        <div className="flex-1 ml-20 mx-12 my-10  p-12 bg-white border border-slate-200 shadow-sm rounded-lg">
+        <div className=" flex-1 ml-4 md:ml-20 mx-4 md:mx-12  my-4 p-4  md:p-12  bg-white border border-slate-200 shadow-sm rounded-lg">
             <h1 className="text-xl font-semibold pb-4 mb-4 border-b-2">
                 Eventos
             </h1>
@@ -35,7 +38,7 @@ export default function TelaAdicionarEvento() {
                 Adicionar
             </Button>
             <ul>
-                {data?.map((evento) => (
+                {eventoList?.map((evento) => (
                     <li key={evento.id}>
                         <Card
                             onClick={() => navigateToDetalharEvento(evento.id)}
@@ -55,7 +58,7 @@ export default function TelaAdicionarEvento() {
                                     ),
                                 },
                                 {
-                                    label: "Hora do evento",
+                                    label: "H. do evento",
                                     icon: "Clock",
                                     value: formatDate(
                                         evento.horaInicio,

@@ -15,6 +15,7 @@ import { useMutation } from "@tanstack/react-query";
 import { PresencaService } from "@/services/Presenca";
 import { useParamId } from "@/hooks/use-param-id";
 import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 interface ICheckIn {
     matricula: string;
@@ -23,6 +24,8 @@ interface ICheckIn {
 export default function CheckIn() {
     const form = useForm();
     const id = useParamId();
+    // const router = useRouter()
+
     const { toast } = useToast();
 
     const { mutate, isPending } = useMutation<any, Error, ICheckIn>({
@@ -45,6 +48,8 @@ export default function CheckIn() {
                 title: "Presença registrada com sucesso",
                 description: "A presença foi registrada com sucesso",
             });
+
+            // router.push("/presemca/success")
         },
         onError: (error) => {
             toast({
