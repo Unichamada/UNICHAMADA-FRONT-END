@@ -24,7 +24,7 @@ interface ICheckIn {
 export default function CheckIn() {
     const form = useForm();
     const id = useParamId();
-    // const router = useRouter()
+    const router = useRouter();
 
     const { toast } = useToast();
 
@@ -42,14 +42,7 @@ export default function CheckIn() {
             return res;
         },
         onSuccess: (data) => {
-            console.log("Presença registrada com sucesso");
-
-            toast({
-                title: "Presença registrada com sucesso",
-                description: "A presença foi registrada com sucesso",
-            });
-
-            // router.push("/presemca/success")
+            router.push(`/presenca/${id}/success`); // redireciona para a página de sucesso
         },
         onError: (error) => {
             toast({
