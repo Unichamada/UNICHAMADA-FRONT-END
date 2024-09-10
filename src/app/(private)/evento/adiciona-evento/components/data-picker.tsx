@@ -30,7 +30,7 @@ export function DatePicker({
             <PopoverTrigger asChild>
                 <FormControl>
                     <Button
-                        variant={"outline"}
+                        variant="outline"
                         className={cn(
                             "flex rounded-md mt-1 px-3 py-2  border-slate-300  text-sm shadow-sm w-full justify-start text-left font-normal",
                             !field.value && "text-muted-foreground",

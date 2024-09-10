@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import SideMenu from "@/components/side-menu";
+
 import { QueryProvider } from "@/components/query-provider";
 import { Toaster } from "@/components/ui/toaster";
-import MenuBar from "@/components/menu-bar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,9 +19,9 @@ export default function RootLayout({
     return (
         <QueryProvider>
             <html lang="pt-br">
-                <body className="flex min-h-screen w-full flex-col bg-slate-100 ">
+                <body className="bg-blue-950 ">
                     <Toaster />
-                    <MenuBar />
+
                     {children}
                 </body>
             </html>

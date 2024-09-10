@@ -16,7 +16,9 @@ export function Card({ titulo = "Evento", items, onClick }: CardEventosProps) {
                 onClick={onClick}
                 className="bg-white mt-4 py-4 px-8 border rounded-md drop-shadow-sm hover:bg-gray-50 cursor-pointer"
             >
-                <h2 className="text-xl font-medium pb-2">{titulo}</h2>
+                <h2 className="text-sm md:text-xl font-medium pb-2">
+                    {titulo}
+                </h2>
                 <div className="flex gap-4">
                     {items.map((item, index) => (
                         <CardItem
@@ -47,7 +49,7 @@ export function CardItem({ label, icon, value }: CardItemProps) {
         <>
             <div className="flex flex-col items-left ">
                 <label className="text-gray-400 text-xs ">{label}</label>
-                <div className=" flex items-center">
+                <div className=" flex items-center text-sm md:text-base">
                     <Icon
                         size={tamanhoIcone}
                         className={cn("mr-2", corPadraoInfo)}

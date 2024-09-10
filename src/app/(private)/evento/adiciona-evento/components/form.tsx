@@ -33,7 +33,7 @@ export function FormAdicionaEvento() {
     const form = useForm();
     const router = useRouter();
     const { toast } = useToast();
-    const { mutate } = useMutation<any, Error, IEvento>({
+    const { mutate, isPending } = useMutation<any, Error, IEvento>({
         mutationFn: async (data) => {
             const [horaInicioNumber, minutoInicioNumber] = data.horaInicio
                 .split(":")
@@ -156,13 +156,15 @@ export function FormAdicionaEvento() {
                         )}
                     />
                 </div>
-
-                <Button
-                    type="submit"
-                    className="bg-blue-800 rounded-lg text-blue-50 hover:bg-blue-700 mb-8"
-                >
-                    Cadastrar
-                </Button>
+                <div className="flex justify-end w-full">
+                    <Button
+                        loading={isPending}
+                        type="submit"
+                        className="w-full md:w-auto bg-blue-800 rounded-lg text-blue-50 hover:bg-blue-700 mb-8"
+                    >
+                        Cadastrar
+                    </Button>
+                </div>
             </form>
         </Form>
     );

@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft, Lock } from "lucide-react";
 import { Breadcrumb } from "antd";
 import {
+    BreadcrumbEllipsis,
     BreadcrumbLink,
     BreadcrumbList,
     BreadcrumbPage,
@@ -40,7 +41,7 @@ export default function DetalharEvento() {
     });
 
     return (
-        <div className="flex-1 ml-20 mx-12 my-10  p-12 bg-white border border-slate-200 shadow-sm rounded-lg">
+        <div className="flex-1 md:ml-20 mx-4 md:mx-12  my-4 p-4  md:p-12 bg-white border border-slate-200 shadow-sm rounded-lg">
             <Breadcrumb>
                 <BreadcrumbList>
                     <BreadcrumbItem>
@@ -50,7 +51,8 @@ export default function DetalharEvento() {
                     </BreadcrumbItem>
 
                     <BreadcrumbItem>
-                        <BreadcrumbPage className="font-medium text-blue-500 ">
+                        <BreadcrumbEllipsis className="md:hidden" />
+                        <BreadcrumbPage className="hidden md:flex font-xs font-medium text-blue-500 ">
                             Detalhar Evento - {data?.nome}
                         </BreadcrumbPage>
                     </BreadcrumbItem>
@@ -65,19 +67,19 @@ export default function DetalharEvento() {
                 Voltar
             </Button>
             <div>
-                <h1 className="text-xl text-gray-700 font-medium mb-6">
+                <h1 className="text-lg  md:text-xl  text-gray-700 font-medium mb-6">
                     Turmas do evento - {data?.nome}
                 </h1>
-                <div className="flex gap-4">
+                <div className=" block  md:flex gap-4">
                     <Button
-                        className="bg-blue-800 rounded-xl text-blue-50 hover:bg-blue-700 mb-3"
+                        className="w-full  md:w-auto bg-blue-800 rounded-xl text-blue-50 hover:bg-blue-700 mb-3"
                         onClick={navigeteToQrCode}
                     >
                         Gerar Chamada
                     </Button>
                     <Button
                         disabled
-                        className="gap-2 bg-gray-300 rounded-xl text-gray-500 mb-3"
+                        className="w-full md:w-auto gap-2 bg-gray-300 rounded-xl text-gray-500 mb-3"
                     >
                         <Lock size={20} />
                         Adicionar Turma

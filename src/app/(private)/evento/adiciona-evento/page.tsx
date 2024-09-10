@@ -21,7 +21,7 @@ export default function TelaAdicionarEvento() {
     };
 
     return (
-        <div className="flex-1 ml-20 mx-12 my-10  p-12 bg-white border border-slate-200 shadow-sm rounded-lg">
+        <div className="flex-1 ml-4 md:ml-20 mx-4 md:mx-12  my-4 p-4  md:p-12 bg-white border border-slate-200 shadow-sm rounded-lg">
             <Breadcrumb>
                 <BreadcrumbList>
                     <BreadcrumbItem>
