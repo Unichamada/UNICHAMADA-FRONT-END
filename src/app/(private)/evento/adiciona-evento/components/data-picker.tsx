@@ -37,11 +37,16 @@ export function DatePicker({
                         )}
                     >
                         <CalendarIcon className="mr-2 h-4 w-4" />
-                        {field.value ? (
-                            format(field.value, "PPP")
-                        ) : (
-                            <span>Selecione uma data</span>
-                        )}
+                            {field.value ? (
+                                new Date(field.value).toLocaleDateString("pt-BR", {
+                                    day: "2-digit",
+                                    month: "numeric",
+                                    year: "numeric"
+                                })
+                            ) : (
+                                <span>Selecione uma data</span>
+                            )}
+
                     </Button>
                 </FormControl>
             </PopoverTrigger>

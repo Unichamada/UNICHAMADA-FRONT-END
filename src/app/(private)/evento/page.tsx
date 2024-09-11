@@ -54,7 +54,7 @@ export default function TelaAdicionarEvento() {
                                     icon: "CalendarDays",
                                     value: formatDate(
                                         evento.dataInicio,
-                                        "dd/MM/yyyy",
+                                        "DD/MM/YYYY",
                                     ),
                                 },
                                 {
