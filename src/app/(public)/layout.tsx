@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description: "CHAMADA ONLINE DA UNINASSAU",
 };
 
-export default function RootLayout({
+export default function PublicLayout({
     children,
 }: {
     children: React.ReactNode;

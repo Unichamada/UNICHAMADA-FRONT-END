@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+
 import { QueryProvider } from "@/components/query-provider";
 import { Toaster } from "@/components/ui/toaster";
 import MenuBar from "@/components/menu-bar";
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description: "CHAMADA ONLINE DA UNINASSAU",
 };
 
-export default function RootLayout({
+export default function PrivateLayout({
     children,
 }: {
     children: React.ReactNode;
@@ -20,8 +20,9 @@ export default function RootLayout({
     return (
         <QueryProvider>
             <html lang="pt-br">
-                <body className="flex min-h-screen w-full flex-col bg-slate-100 ">
-                   
+                <body className="bg-slate-100 ">
+                    <Toaster />
+                    <MenuBar />
                     {children}
                 </body>
             </html>
