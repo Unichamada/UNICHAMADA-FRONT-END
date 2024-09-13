@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useRouter } from "next/navigation";
 import { Card } from "./adiciona-evento/components/card";
 import { useQuery } from "@tanstack/react-query";
