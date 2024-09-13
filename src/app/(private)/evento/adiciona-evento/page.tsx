@@ -13,6 +13,8 @@ import {
 import BreadcrumbItem from "antd/es/breadcrumb/BreadcrumbItem";
 import Link from "next/link";
 import { FormAdicionaEvento } from "./components/form";
+import { Page } from "@/components/page";
+import { BreadCrumb } from "@/components/bread-crumb";
 
 export default function TelaAdicionarEvento() {
     const router = useRouter();
@@ -21,22 +23,8 @@ export default function TelaAdicionarEvento() {
     };
 
     return (
-        <div className="flex-1 ml-4 md:ml-20 mx-4 md:mx-12  my-4 p-4  md:p-12 bg-white border border-slate-200 shadow-sm rounded-lg">
-            <Breadcrumb>
-                <BreadcrumbList>
-                    <BreadcrumbItem>
-                        <BreadcrumbLink asChild>
-                            <Link href="/evento">Evento</Link>
-                        </BreadcrumbLink>
-                    </BreadcrumbItem>
-
-                    <BreadcrumbItem>
-                        <BreadcrumbPage className="font-medium text-blue-500 ">
-                            Adiciona Evento
-                        </BreadcrumbPage>
-                    </BreadcrumbItem>
-                </BreadcrumbList>
-            </Breadcrumb>
+        <Page>
+            <BreadCrumb />
             <Button
                 variant="ghost"
                 className=" rounded-lg  hover:bg-blue-50 my-4"
@@ -49,6 +37,6 @@ export default function TelaAdicionarEvento() {
                 Cadastrar Evento
             </h1>
             <FormAdicionaEvento />
-        </div>
+        </Page>
     );
 }

@@ -18,6 +18,7 @@ import { Card } from "../../adiciona-evento/components/card";
 import { useParamId } from "@/hooks/use-param-id";
 import { useQuery } from "@tanstack/react-query";
 import { EventoService } from "@/services/Evento";
+import { Page } from "@/components/page";
 
 export default function DetalharEvento() {
     const router = useRouter();
@@ -41,7 +42,7 @@ export default function DetalharEvento() {
     });
 
     return (
-        <div className="flex-1 md:ml-20 mx-4 md:mx-12  my-4 p-4  md:p-12 bg-white border border-slate-200 shadow-sm rounded-lg">
+        <Page>
             <Breadcrumb>
                 <BreadcrumbList>
                     <BreadcrumbItem>
@@ -102,6 +103,6 @@ export default function DetalharEvento() {
                     ))}
                 </ul>
             </div>
-        </div>
+        </Page>
     );
 }

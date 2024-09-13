@@ -12,6 +12,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParamId } from "@/hooks/use-param-id";
 import { EventoService } from "@/services/Evento";
 import { TablePresenca } from "./components/table-presenca-component";
+import { Page } from "@/components/page";
 
 export default function DetalharTurma() {
     const params = useParams();
@@ -32,7 +33,7 @@ export default function DetalharTurma() {
     });
 
     return (
-        <div className="flex-1 md:ml-20 mx-4 md:mx-12  my-4 p-4  md:p-12 bg-white border border-slate-200 shadow-sm rounded-lg">
+        <Page>
             <Breadcrumb>
                 <BreadcrumbList>
                     <BreadcrumbItem>
@@ -72,6 +73,6 @@ export default function DetalharTurma() {
                 </div>
             </div>
             <TablePresenca data={data} />
-        </div>
+        </Page>
     );
 }
