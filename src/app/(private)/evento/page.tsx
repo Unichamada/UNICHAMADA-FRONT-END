@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Card } from "./adiciona-evento/components/card";
 import { useQuery } from "@tanstack/react-query";
@@ -24,8 +24,6 @@ export default function TelaAdicionarEvento() {
         queryFn: async () => await EventoService.getEventos(),
     });
 
-    const eventoList = data ? data : ([] as GetEventoDto[]);
-
     return (
         <div className=" flex-1 ml-4 md:ml-20 mx-4 md:mx-12  my-4 p-4  md:p-12  bg-white border border-slate-200 shadow-sm rounded-lg">
             <h1 className="text-xl font-semibold pb-4 mb-4 border-b-2">
@@ -37,39 +35,51 @@ export default function TelaAdicionarEvento() {
             >
                 Adicionar
             </Button>
-            <ul>
-                {eventoList?.map((evento) => (
-                    <li key={evento.id}>
-                        <Card
-                            onClick={() => navigateToDetalharEvento(evento.id)}
-                            titulo={evento.nome}
-                            items={[
-                                // {
-                                //     label: "Participantes",
-                                //     icon: "UsersRound",
-                                //     value: 100,
-                                // },
-                                {
-                                    label: "Data do evento",
-                                    icon: "CalendarDays",
-                                    value: formatDate(
-                                        evento.dataInicio,
-                                        "DD/MM/YYYY",
-                                    ),
-                                },
-                                {
-                                    label: "H. do evento",
-                                    icon: "Clock",
-                                    value: formatDate(
-                                        evento.horaInicio,
-                                        "HH:mm",
-                                    ),
-                                },
-                            ]}
-                        />
-                    </li>
-                ))}
-            </ul>
+            {
+                // Se não houver eventos
+                !Array.isArray(data) ? (
+                    <div className="text-center text-gray-400 py-4">
+                        Nenhum evento encontrado
+                    </div>
+                ) : (
+                    <ul>
+                        {Array.isArray(data) &&
+                            data?.map((evento) => (
+                                <li key={evento.id}>
+                                    <Card
+                                        onClick={() =>
+                                            navigateToDetalharEvento(evento.id)
+                                        }
+                                        titulo={evento.nome}
+                                        items={[
+                                            // {
+                                            //     label: "Participantes",
+                                            //     icon: "UsersRound",
+                                            //     value: 100,
+                                            // },
+                                            {
+                                                label: "Data do evento",
+                                                icon: "CalendarDays",
+                                                value: formatDate(
+                                                    evento.dataInicio,
+                                                    "DD/MM/YYYY",
+                                                ),
+                                            },
+                                            {
+                                                label: "H. do evento",
+                                                icon: "Clock",
+                                                value: formatDate(
+                                                    evento.horaInicio,
+                                                    "HH:mm",
+                                                ),
+                                            },
+                                        ]}
+                                    />
+                                </li>
+                            ))}
+                    </ul>
+                )
+            }
         </div>
     );
 }

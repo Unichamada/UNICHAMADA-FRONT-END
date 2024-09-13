@@ -40,7 +40,7 @@ export function DatePicker({
                             {field.value ? (
                                 new Date(field.value).toLocaleDateString("pt-BR", {
                                     day: "2-digit",
-                                    month: "numeric", 
+                                    month: "2-digit", 
                                     year: "numeric" 
                                 })
                             ) : (
