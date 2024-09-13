@@ -20,7 +20,7 @@ export default function PrivateLayout({
 }) {
     return (
         <QueryProvider>
-            <html lang="pt-br">
+            <html className="h-screen" lang="pt-br">
                 <body className="bg-slate-100 ">
                     <Toaster />
                     <MenuBar />

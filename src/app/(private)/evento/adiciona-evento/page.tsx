@@ -22,9 +22,14 @@ export default function TelaAdicionarEvento() {
         router.push("/evento");
     };
 
+    const breadcrumbItems = [
+        { label: "Evento", href: "/evento" },
+        { label: "Adiciona Evento", isCurrentPage: true },
+    ];
+
     return (
         <Page>
-            <BreadCrumb />
+            <BreadCrumb items={breadcrumbItems} />
             <Button
                 variant="ghost"
                 className=" rounded-lg  hover:bg-blue-50 my-4"
