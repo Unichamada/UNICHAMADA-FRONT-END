@@ -4,20 +4,13 @@ import { Button } from "@/components/ui/button";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Lock } from "lucide-react";
-import { Breadcrumb } from "antd";
-import {
-    BreadcrumbEllipsis,
-    BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbPage,
-} from "@/components/ui/breadcrumb";
-import BreadcrumbItem from "antd/es/breadcrumb/BreadcrumbItem";
-import Link from "next/link";
 
 import { Card } from "../../adiciona-evento/components/card";
 import { useParamId } from "@/hooks/use-param-id";
 import { useQuery } from "@tanstack/react-query";
 import { EventoService } from "@/services/Evento";
+import { Page } from "@/components/page";
+import { BreadCrumb } from "@/components/bread-crumb";
 
 export default function DetalharEvento() {
     const router = useRouter();
@@ -40,24 +33,15 @@ export default function DetalharEvento() {
         queryFn: async () => await EventoService.getEventoById(id),
     });
 
-    return (
-        <div className="flex-1 md:ml-20 mx-4 md:mx-12  my-4 p-4  md:p-12 bg-white border border-slate-200 shadow-sm rounded-lg">
-            <Breadcrumb>
-                <BreadcrumbList>
-                    <BreadcrumbItem>
-                        <BreadcrumbLink asChild>
-                            <Link href="/evento">Evento</Link>
-                        </BreadcrumbLink>
-                    </BreadcrumbItem>
+    const breadcrumbItems = [
+        { label: "Evento", href: "/evento" },
+        { label: `Detalhar Evento -  ${data?.nome}`, isCurrentPage: true },
+    ];
 
-                    <BreadcrumbItem>
-                        <BreadcrumbEllipsis className="md:hidden" />
-                        <BreadcrumbPage className="hidden md:flex font-xs font-medium text-blue-500 ">
-                            Detalhar Evento - {data?.nome}
-                        </BreadcrumbPage>
-                    </BreadcrumbItem>
-                </BreadcrumbList>
-            </Breadcrumb>
+    return (
+        <Page>
+            <BreadCrumb items={breadcrumbItems} />
+
             <Button
                 variant="ghost"
                 className=" rounded-xl  hover:bg-blue-50 my-4"
@@ -85,7 +69,6 @@ export default function DetalharEvento() {
                         Adicionar Turma
                     </Button>
                 </div>
-
                 <ul>
                     {data?.turmas.map((eventoTurma) => (
                         <li key={eventoTurma.turma.id}>
@@ -102,6 +85,6 @@ export default function DetalharEvento() {
                     ))}
                 </ul>
             </div>
-        </div>
+        </Page>
     );
 }

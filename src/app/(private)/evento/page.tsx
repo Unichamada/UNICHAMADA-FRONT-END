@@ -7,6 +7,8 @@ import { Card } from "./adiciona-evento/components/card";
 import { useQuery } from "@tanstack/react-query";
 import { EventoService } from "@/services/Evento";
 import { formatDate } from "date-fns";
+import { GetEventoDto } from "@/services/Evento/dto/get-evento.dto";
+import { Page } from "@/components/page";
 
 export default function TelaAdicionarEvento() {
     const router = useRouter();
@@ -24,7 +26,7 @@ export default function TelaAdicionarEvento() {
     });
 
     return (
-        <div className=" flex-1 ml-4 md:ml-20 mx-4 md:mx-12  my-4 p-4  md:p-12  bg-white border border-slate-200 shadow-sm rounded-lg">
+        <Page>
             <h1 className="text-xl font-semibold pb-4 mb-4 border-b-2">
                 Eventos
             </h1>
@@ -61,7 +63,7 @@ export default function TelaAdicionarEvento() {
                                                 icon: "CalendarDays",
                                                 value: formatDate(
                                                     evento.dataInicio,
-                                                    "dd/MM/yyyy",
+                                                    "dd/mm/yyyy",
                                                 ),
                                             },
                                             {
@@ -79,6 +81,6 @@ export default function TelaAdicionarEvento() {
                     </ul>
                 )
             }
-        </div>
+        </Page>
     );
 }

@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { QueryProvider } from "@/components/query-provider";
 import { Toaster } from "@/components/ui/toaster";
 import MenuBar from "@/components/menu-bar";
+import { Page } from "@/components/page";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,7 @@ export default function PrivateLayout({
 }) {
     return (
         <QueryProvider>
-            <html lang="pt-br">
+            <html className="h-screen" lang="pt-br">
                 <body className="bg-slate-100 ">
                     <Toaster />
                     <MenuBar />

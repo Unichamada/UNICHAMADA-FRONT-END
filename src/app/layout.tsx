@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
     return (
         <QueryProvider>
-            <html lang="pt-br">
+            <html className="h-screen" lang="pt-br">
                 <body className="flex min-h-screen w-full flex-col bg-slate-100 ">
                     <MenuBar />
                     {children}

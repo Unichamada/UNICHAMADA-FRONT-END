@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import React from "react";
 import { useParams, useRouter } from "next/navigation";
-import { ArrowLeft, FileUp } from "lucide-react";
+import { ArrowLeft, FileUp, Lock } from "lucide-react";
 import { Breadcrumb } from "antd";
 import { BreadcrumbLink, BreadcrumbList } from "@/components/ui/breadcrumb";
 import BreadcrumbItem from "antd/es/breadcrumb/BreadcrumbItem";
@@ -12,6 +12,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useParamId } from "@/hooks/use-param-id";
 import { EventoService } from "@/services/Evento";
 import { TablePresenca } from "./components/table-presenca-component";
+import { Page } from "@/components/page";
+import { BreadCrumb } from "@/components/bread-crumb";
 
 export default function DetalharTurma() {
     const params = useParams();
@@ -31,24 +33,21 @@ export default function DetalharTurma() {
             await EventoService.getPresencaByTurma(id, turmaId),
     });
 
+    const breadcrumbItems = [
+        {
+            label: "Evento",
+            href: "/evento",
+        },
+        {
+            label: "Alunos presentes",
+            isCurrentPage: true,
+        },
+    ];
+
     return (
-        <div className="flex-1 md:ml-20 mx-4 md:mx-12  my-4 p-4  md:p-12 bg-white border border-slate-200 shadow-sm rounded-lg">
-            <Breadcrumb>
-                <BreadcrumbList>
-                    <BreadcrumbItem>
-                        <BreadcrumbLink asChild>
-                            <Link href="/evento">Evento</Link>
-                        </BreadcrumbLink>
-                    </BreadcrumbItem>
-                    <BreadcrumbItem>
-                        <BreadcrumbLink asChild>
-                            <Link href={`/evento/${id}/detalhar`}>
-                                Alunos presentes
-                            </Link>
-                        </BreadcrumbLink>
-                    </BreadcrumbItem>
-                </BreadcrumbList>
-            </Breadcrumb>
+        <Page>
+            <BreadCrumb items={breadcrumbItems} />
+
             <Button
                 variant="ghost"
                 className=" rounded-md  hover:bg-blue-50 my-4"
@@ -64,14 +63,14 @@ export default function DetalharTurma() {
                 <div className="flex gap-4">
                     <Button
                         onClick={navigateToImportarAluno}
-                        className="gap-2 bg-blue-800 rounded-md text-blue-50 hover:bg-blue-700 mb-3"
+                        className="w-full md:w-auto gap-2 bg-gray-300 rounded-xl text-gray-500 mb-3 hover:bg-gray-300  hover:text-gray-500 mb-3"
                     >
-                        <FileUp size={20} />
+                        <Lock size={20} />
                         Importar Alunos
                     </Button>
                 </div>
             </div>
             <TablePresenca data={data} />
-        </div>
+        </Page>
     );
 }
