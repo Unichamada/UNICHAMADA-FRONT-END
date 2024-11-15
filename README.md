@@ -1,4 +1,4 @@
-# 📘 Documentação do Projeto
+# 📘 Leia para commitar
 
 ## 📂 Estrutura de Branches
 Adotamos um padrão de nomenclatura para facilitar o entendimento e organização do repositório. Cada tipo de branch segue uma convenção para manter o fluxo de trabalho claro.
